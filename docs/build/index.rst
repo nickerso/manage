@@ -96,20 +96,21 @@ Building on Windows (64bit) (experimental!)
       a. Get installer from http://sourceforge.net/projects/msys2/
       #. Install (assume here: :path:`C:\MSYS2_64`), dont use spaces in the installation folder!
       #. Follow the instructions in Section III to update your version http://sourceforge.net/p/msys2/wiki/MSYS2%20installation
-   #. Get MinGW 64:
+      #. Install MinGW64 (i.e. :sh:`pacman -S mingw-w64-x86_64-gcc`)
+   #. Get MinGW 64 (with gfortran):
    
       a. Get installer from http://sourceforge.net/projects/mingw-w64/
       #. Choose you GCC version and threading model (use posix); the installer automatically suggests a suitable subfolder for your selection so you can have multiple versions in parallel.
       #. Install, (assume here: C:\mingw-w64\...)
       #. Create a directory junction to include the mingw64-folder into the msys directory tree     
-   #. Open a windows command prompt **IN ADMINISTRATOR MODE**
-   
-      a. Go into C:\MSYS2_64
-      #. Remove the old :path:`mingw64`-folder (it should only contain an :path:`/etc` folder)
-      #. Type :sh:`mklink /J mingw64 C:\mingw-w64\<your selection>\mingw64`
-      #. Windows will confirm e.g. :sh:`Junction created for mingw64 <<===>> C:\mingw-w64\x86_64-4.9.2-posix-seh-rt_v4-rev2\mingw64`
-      #. If you want to switch to another toolchain version/model later, install mingw-w64 with that
-         config and repeat the symlink steps.
+         
+         a. Open a windows command prompt **IN ADMINISTRATOR MODE**
+         #. Go into C:\MSYS2_64
+         #. Remove the old :path:`mingw64`-folder (it should only contain an :path:`/etc` folder)
+         #. Type :sh:`mklink /J mingw64 C:\mingw-w64\<your selection>\mingw64`
+         #. Windows will confirm e.g. :sh:`Junction created for mingw64 <<===>> C:\mingw-w64\x86_64-4.9.2-posix-seh-rt_v4-rev2\mingw64`
+         #. If you want to switch to another toolchain version/model later, install mingw-w64 with that
+            config and repeat the symlink steps.
    #. Get an MPI implementation!
    
       a. http://www.mpich.org/downloads for MPICH2
@@ -127,8 +128,7 @@ Building on Windows (64bit) (experimental!)
       * Get SSH keys if you want to make a development checkout of sources
         (copy the existing id.pub etc into the :path:`~/.ssh` folder (absolute path :path:`C:\MSYS2_64\home\<windows-username>`),
         otherwise find out how to create them and notify github, see https://help.github.com/articles/generating-ssh-keys)
-      * MSYS comes with mingw32/64 packages (which must still be installed using packman,
-        (i.e. :sh:`pacman -S mingw-w64-x86_64-gcc`), but we found that those packages don’t come with gfortran (yet).
+      * MSYS comes with mingw32/64 packages (which must still be installed), but we found that those packages don’t come with gfortran (yet).
         Thus, use the procedure above.
       * Parmetis builds: get http://sourceforge.net/p/mingw-w64/code/HEAD/tree/experimental/getrusage/ to have
         :path:`resource.h` header (followed source forge link) *or* comment out the line.
